@@ -10,6 +10,18 @@
 # include "../libft/libft.h"
 # include <sys/time.h>
 
+
+typedef struct l_philo
+{
+	int		n;
+	bool 	is_eating;
+	struct l_info	*info;
+	long long last_eat;
+    pthread_t thread;
+	pthread_mutex_t	fork_r;
+	pthread_mutex_t fork_l;
+} 	  t_philo;
+
 typedef struct l_info
 {
 	int n_philo;
@@ -18,20 +30,9 @@ typedef struct l_info
 	int t_sleep;
 	int n_eat;
 	int stop;
+	t_philo *philo;
 	pthread_mutex_t	print;
 }       t_info;
-
-
-typedef struct l_philo
-{
-	int		n;
-	bool 	is_eating;
-	t_info	info;
-	long long last_eat;
-	pthread_mutex_t	fork_r;
-	pthread_mutex_t fork_l;
-	pthread_mutex_t	m_check;
-} 	  t_philo;
 
 void philo_init(t_info *data);
 void    *philo_life(void *philo);

@@ -6,7 +6,7 @@
 #    By: jdecorte42 <jdecorte42@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/27 17:11:47 by jdecorte          #+#    #+#              #
-#    Updated: 2022/03/18 19:13:03 by jdecorte42       ###   ########.fr        #
+#    Updated: 2022/03/19 17:31:58 by jdecorte42       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo_one
 
 CC = gcc
 
-CFLAGS = -fsanitize=thread -g
+CFLAGS = -fsanitize=thread
 
 RM = rm -rf
 

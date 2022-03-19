@@ -6,28 +6,26 @@
 /*   By: jdecorte42 <jdecorte42@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:27:39 by jdecorte          #+#    #+#             */
-/*   Updated: 2022/03/19 14:08:44 by jdecorte42       ###   ########.fr       */
+/*   Updated: 2022/03/19 17:21:23 by jdecorte42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void *check_death(void *phi)
+void check_death(t_info *data)
 {
-    t_philo *philo = (t_philo *)phi;
     int i = 0;
-    while(!philo->info.stop)
+    while(!data->stop)
     {
         i = 0;
-        while(i < philo->info.n_philo)
+        while(i < data->n_philo && !data->stop)
         {
-            if (timestamp() > philo[i].last_eat + philo[i].info.t_die)
+            if (timestamp() > data->philo[i].last_eat + data->t_die)
             {
-                pthread_mutex_lock(&philo[i].info.print);
                 printf("%lld %d died\n", timestamp(), i + 1);
-                philo->info.stop = 1;
-                pthread_mutex_unlock(&philo[i].info.print);
-                return NULL;
+                pthread_mutex_lock(&data->print);
+                data->stop = 1;
+                return ;
             }
             i++;
         }
@@ -38,25 +36,30 @@ void *check_death(void *phi)
 // pthread_create --> thinking
 void philo_init(t_info *data)
 {
-    pthread_t t1;
-    t_philo philo[data->n_philo];
     int i;
 
+    data->philo = malloc(sizeof(t_philo));
     i = 0;
     while(i < data->n_philo)
     {
-        philo[i].n = i + 1;
-        philo[i].info = *data;
-        philo[i].last_eat = 0;
-        if (pthread_create(&t1, NULL, &philo_life, &(philo[i])) != 0)
+        data->philo[i].n = i + 1;
+        data->philo[i].info = data;
+        data->philo[i].last_eat = 0;
+        if (pthread_create(&data->philo[i].thread, NULL, &philo_life, &(data->philo[i])) != 0)
             perror("pthread_create");
-        pthread_detach(t1);
         usleep(100);
         i++;
     }
-    if (pthread_create(&t1, NULL, &check_death, (void *)philo) != 0)
-        perror("pthread_create");
-    pthread_detach(t1);
+    check_death(data);
+    pthread_mutex_unlock(&data->print);
+    i = 0;
+    while(i < data->n_philo)
+    {
+        if(pthread_join(data->philo[i].thread, NULL) != 0)
+            perror("pthread_create");
+        i++;
+    }
+
 }
 
 void var_init(t_info *data, char **av)
