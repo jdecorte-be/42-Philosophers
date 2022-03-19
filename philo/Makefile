@@ -6,7 +6,7 @@
 #    By: jdecorte <jdecorte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/27 17:11:47 by jdecorte          #+#    #+#              #
-#    Updated: 2022/03/02 11:09:34 by jdecorte         ###   ########.fr        #
+#    Updated: 2022/03/19 19:11:54 by jdecorte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,17 @@ NAME = philo
 
 CC = gcc
 
-CFLAGS = -fsanitize=address
+CFLAGS = 
 
 RM = rm -rf
 
 SRCS = 	src/main.c\
 		libft/libft.a\
-		src/init.c
+		src/init.c\
+		src/philo.c\
+		src/utils.c
+
+
 
 # SRCS_BONUS = src_bonus/checker_bonus.c\
 # 			src_bonus/ope1_bonus.c\
