@@ -14,10 +14,11 @@
 typedef struct l_philo
 {
 	int		n;
+	int		m_count;
 	bool 	is_eating;
-	struct l_info	*info;
-	long long last_eat;
     pthread_t thread;
+	long long last_eat;
+	struct l_info	*info;
 	pthread_mutex_t	fork_r;
 	pthread_mutex_t fork_l;
 } 	  t_philo;

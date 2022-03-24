@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecorte <jdecorte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdecorte42 <jdecorte42@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:27:39 by jdecorte          #+#    #+#             */
-/*   Updated: 2022/03/19 19:36:18 by jdecorte         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:06:05 by jdecorte42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ void check_death(t_info *data)
     while(!data->stop)
     {
         i = 0;
-        while(i < data->n_philo && !data->stop)
+        while(++i < data->n_philo && !data->stop)
         {
             if (timestamp() - data->philo[i].last_eat > data->t_die)
             {
                 print(data->philo, " died\n");
                 pthread_mutex_lock(&(data->philo[i].info->print));
                 data->stop = 1;
+                pthread_mutex_unlock(&(data->philo[i].info->print));
                 return ;
             }
             i++;
@@ -34,7 +35,6 @@ void check_death(t_info *data)
     }
 }
 
-// pthread_create --> thinking
 void philo_init(t_info *data)
 {
     int i;
@@ -45,6 +45,7 @@ void philo_init(t_info *data)
     {
         data->philo[i].n = i + 1;
         data->philo[i].info = data;
+        data->philo[i].m_count = 0;
         pthread_mutex_init(&(data->philo[i].fork_l), NULL);
         if(i == data->n_philo - 1)
             data->philo[i].fork_r = data->philo[0].fork_l;
@@ -56,7 +57,6 @@ void philo_init(t_info *data)
         i++;
     }
     check_death(data);
-    pthread_mutex_unlock(&(data->print));
     i = 0;
     while(i < data->n_philo)
     {
