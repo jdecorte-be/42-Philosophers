@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jdecorte <jdecorte@student.42.fr>          +#+  +:+       +#+         #
+#    By: jdecorte42 <jdecorte42@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/27 17:11:47 by jdecorte          #+#    #+#              #
-#    Updated: 2022/03/19 19:11:54 by jdecorte         ###   ########.fr        #
+#    Updated: 2022/03/28 11:41:38 by jdecorte42       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 
 CC = gcc
 
-CFLAGS = 
+CFLAGS = -g
 
 RM = rm -rf
 
