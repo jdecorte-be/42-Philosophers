@@ -1,11 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdecorte42 <jdecorte42@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/28 16:02:33 by jdecorte42        #+#    #+#             */
+/*   Updated: 2022/03/28 16:03:35 by jdecorte42       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    if(ac != 5 && ac != 6)
-        return 0;
-    t_info data;
-    var_init(&data, av);
-    philo_init(&data);
+	t_info	data;
 
+	if (ac != 5 && ac != 6)
+		return (-1);
+	if (var_init(&data, av))
+		return (-1);
+	philo_init(&data);
 }

@@ -11,10 +11,11 @@
 # include <sys/time.h>
 # include <limits.h>
 
-
 typedef struct l_philo
 {
+	
 	int		n;
+	int		m_count;
 	bool 	is_eating;
     pthread_t thread;
 	long int last_eat;
@@ -25,7 +26,7 @@ typedef struct l_philo
 
 typedef struct l_info
 {
-	int		m_count;
+	int		philo_eat;
 	int n_philo;
 	int t_die;
 	int	t_eat;
@@ -44,7 +45,7 @@ void	ft_usleep(int ms);
 int philo_init(t_info *data);
 void    *philo_life(void *philo);
 long long timestamp();
-void var_init(t_info *data, char **av);
+int var_init(t_info *data, char **av);
 void    *philo_life(void *phi);
 void print(t_philo *philo, char *str);
 int is_dead(t_philo *philo, int nb);
