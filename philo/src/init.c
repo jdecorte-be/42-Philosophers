@@ -6,7 +6,7 @@
 /*   By: jdecorte42 <jdecorte42@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:27:39 by jdecorte          #+#    #+#             */
-/*   Updated: 2022/03/29 13:00:03 by jdecorte42       ###   ########.fr       */
+/*   Updated: 2022/04/13 23:10:43 by jdecorte42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	philo_init(t_info *data)
 			data->philo[i].fork_r = &data->philo[i + 1].fork_l;
 		if (pthread_create(&data->philo[i].thread, NULL, \
 				&philo_life, &(data->philo[i])) != 0)
-			perror("pthread_create");
+			return (-1);
 	}
 	i = -1;
 	while (++i < data->n_philo)
-		if (pthread_join(data->philo[i].thread, NULL) != 0)
-			perror("pthread_create");
+ 		if (pthread_join(data->philo[i].thread, NULL) != 0)
+			return (-1);
 	return (0);
 }
 
@@ -71,12 +71,12 @@ int	var_init(t_info *data, char **av)
 	data->philo = malloc(sizeof(t_philo) * data->n_philo);
 	if (data->philo == NULL)
 	{
-		ft_putstr_fd("Malloc Error\n", 2);
+		printf("Malloc Error\n");
 		return (1);
 	}
 	if (check_num(av))
 	{
-		ft_putstr_fd("Invalid Arguments\n", 2);
+		printf("Invalid Arguments\n");
 		return (1);
 	}
 	data->philo_eat = 0;

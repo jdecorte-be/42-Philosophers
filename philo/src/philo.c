@@ -6,7 +6,7 @@
 /*   By: jdecorte42 <jdecorte42@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:10:04 by jdecorte42        #+#    #+#             */
-/*   Updated: 2022/03/29 12:55:15 by jdecorte42       ###   ########.fr       */
+/*   Updated: 2022/04/12 11:28:51 by jdecorte42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	*check_death(void *phi)
 		pthread_mutex_unlock(&philo->info->m_stop);
 		print(philo, " died\n");
 		is_dead(philo, 1);
-		return (NULL);
 	}
 	pthread_mutex_unlock(&philo->info->m_eat);
 	pthread_mutex_unlock(&philo->info->m_stop);
@@ -38,7 +37,7 @@ void	take_fork(t_philo *philo)
 {
 	pthread_mutex_lock(&(philo->fork_l));
 	print(philo, " has taken a fork\n");
-	if (!philo->fork_r)
+	if (philo->info->n_philo == 1)
 	{
 		ft_usleep(philo->info->t_die * 2);
 		return ;
@@ -64,8 +63,8 @@ void	philo_eat(t_philo *philo)
 
 void	*philo_life(void *phi)
 {
-	pthread_t	t;
 	t_philo		*philo;
+	pthread_t	t;
 
 	philo = (t_philo *)phi;
 	if (philo->n % 2 == 0)
@@ -80,14 +79,13 @@ void	*philo_life(void *phi)
 		{
 			pthread_mutex_lock(&philo->info->m_stop);
 			philo->info->philo_eat++;
-			if(philo->info->philo_eat == philo->info->n_philo)
+			if (philo->info->philo_eat == philo->info->n_philo)
 			{
-				philo->info->stop = 1;
-				is_dead(philo, 2);
 				pthread_mutex_unlock(&philo->info->m_stop);
-				return (NULL);
+				is_dead(philo, 2);
 			}
 			pthread_mutex_unlock(&philo->info->m_stop);
+			return (NULL);
 		}
 	}
 	return (NULL);

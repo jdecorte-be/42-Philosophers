@@ -6,7 +6,7 @@
 /*   By: jdecorte42 <jdecorte42@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:15:25 by jdecorte42        #+#    #+#             */
-/*   Updated: 2022/03/28 16:20:20 by jdecorte42       ###   ########.fr       */
+/*   Updated: 2022/04/12 11:15:35 by jdecorte42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,6 @@ void	print(t_philo *philo, char *str)
 	time = timestamp() - philo->info->t_start;
 	if (!philo->info->stop && time >= 0 \
 			&& time <= INT_MAX && !is_dead(philo, 0))
-	{
-		ft_putnbr_fd(timestamp() - philo->info->t_start, 1);
-		ft_putstr_fd(" ", 1);
-		ft_putnbr_fd(philo->n, 1);
-		ft_putstr_fd(str, 1);
-	}
+		printf("%lld %d %s", timestamp() - philo->info->t_start, philo->n, str);
 	pthread_mutex_unlock(&(philo->info->print));
 }
