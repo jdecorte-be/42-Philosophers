@@ -60,9 +60,6 @@ __exemple :__
 
 ![alt text](https://zupimages.net/up/20/38/is7q.png)
 
- __*In build*__   
-
-
 
 ## Project documentation 📚
 
