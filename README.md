@@ -27,8 +27,6 @@ It was originally formulated in *1965 by Edsger Dijkstra* as a student exam exer
 
 [More informations](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
 
-__Project duration__ : 1 week ⏳
-
 *Tips and good methodology to do the project at the bottom of the readme*
 
 ## Installation 🖥
