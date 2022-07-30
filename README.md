@@ -1,5 +1,19 @@
-# Philosophers - [@42Born2code](https://www.youtube.com/watch?time_continue=88&v=eawhnhTO2oY&feature=emb_logo)
-![](https://developer.android.com/courses/extras/images/multi-threading-2.png)
+<h1 align="center">
+	📖 Philosophers
+</h1>
+
+<p align="center">
+	<b><i>Basics of process threading, and how work on the same memory space.</i></b><br>
+</p>
+
+<p align="center">
+	<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/jdecorte-be/42-Philosophers?color=lightblue" />
+	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github/jdecorte-be/42-Philosophers?color=critical" />
+	<img alt="Code language count" src="https://img.shields.io/github/languages/count/jdecorte-be/42-Philosophers?color=yellow" />
+	<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/jdecorte-be/42-Philosophers?color=blue" />
+	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jdecorte-be/42-Philosophers?color=green" />
+</p>
+
 ---
 
 Philosophers an individual project at [42](https://www.42.fr/42-network/) about introduction to the basics of process threading, and how work on the same memory space.
